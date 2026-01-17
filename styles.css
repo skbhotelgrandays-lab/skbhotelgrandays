@@ -1,0 +1,55 @@
+/* --- IMAGE SLIDER COMPOSITION --- */
+#hero {
+    position: relative;
+    /* Sets a professional widescreen shape (16:9) */
+    aspect-ratio: 16 / 9; 
+    width: 100%;
+    /* Limits height so the image doesn't push content too far down on huge screens */
+    max-height: 85vh; 
+    min-height: 300px; /* Ensures it doesn't disappear on tiny phones */
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1a1a1a;
+}
+
+.slider-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* COMPOSITION RULES: */
+    width: 100%;
+    height: 100%;
+    /* 'contain' keeps the full image visible without stretching */
+    object-fit: contain; 
+    
+    /* Adds a soft shadow behind the image to separate it from the dark background */
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.5)) brightness(85%);
+    
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* Responsive adjustment for Mobile */
+@media (max-width: 768px) {
+    #hero {
+        /* Changes to a more square shape for mobile phones */
+        aspect-ratio: 4 / 3; 
+    }
+}
